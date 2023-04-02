@@ -68,7 +68,7 @@ int main(int count, char* strings[]) {
 			else if (r == ']')cen -= 1;
 		}
 		else {
-			if (mode & 2)printf("%lu (%c) \n", ftell(fp), r);
+			if (mode & 2)printf("%lu (%c) [%llu]->%02X\n", ftell(fp), r, now - memory, *now);
 			switch (r)
 			{
 			case '>':
@@ -129,8 +129,11 @@ int main(int count, char* strings[]) {
 	}
 	mertime = clock() - mertime;
 	mertime = mertime * 1000 / CLOCKS_PER_SEC;
-	printf("\n\n    [%llu]ms", mertime);
+	printf("\n\nTime:[%llu]ms", mertime);
 	if(cen)printf("[FATAL]: Error: The loop did not end.");
+
+	puts("\nPress any key to continue");
+	_getch();
 
 	return 0;
 }
